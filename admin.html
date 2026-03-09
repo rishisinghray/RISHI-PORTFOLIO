@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>RISHI — Admin Panel</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+<canvas id="bg-canvas"></canvas>
+<div class="scanlines"></div>
+<div class="toast toast-info" id="toast"></div>
+
+<!-- NAV -->
+<nav id="nav" class="solid">
+  <div class="nav-logo">RISHI<em>.ADMIN</em></div>
+  <div class="nav-r">
+    <div class="nav-pill">
+      <div class="av-pl" id="navAvPl">R</div>
+      <img class="av" id="navAvImg" src="" style="display:none" alt=""/>
+      <span class="nav-em" id="navEmail"></span>
+    </div>
+    <a href="portfolio.html" class="btn btn-ghost btn-sm"><span>← Portfolio</span></a>
+    <button class="btn btn-ghost btn-sm" id="logoutBtn"><span>Logout</span></button>
+  </div>
+</nav>
+
+<!-- LAYOUT -->
+<div class="adm-layout">
+
+  <!-- Sidebar -->
+  <aside class="adm-sidebar">
+    <div class="sb-hdr">
+      <div class="sb-name" id="sbName">ADMIN</div>
+      <div class="sb-role">⬡ Administrator</div>
+    </div>
+    <nav class="sb-nav">
+      <div class="sb-item on" data-sec="dashboard"><span class="sb-icon">◈</span><span>Dashboard</span></div>
+      <div class="sb-item" data-sec="projects"><span class="sb-icon">⬡</span><span>Projects</span></div>
+      <div class="sb-item" data-sec="users"><span class="sb-icon">◉</span><span>Users</span></div>
+      <div class="sb-item" data-sec="settings"><span class="sb-icon">⚙</span><span>Settings</span></div>
+    </nav>
+    <div class="sb-foot">
+      <a href="portfolio.html" class="sb-link">← Back to Portfolio</a>
+      <a href="dashboard.html" class="sb-link">My Dashboard</a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="adm-main">
+    <div class="adm-top">
+      <div class="adm-title" id="pageTitle">// DASHBOARD</div>
+    </div>
+
+    <!-- ── Dashboard ── -->
+    <div class="adm-sec on" id="sec-dashboard">
+      <div class="stats-row">
+        <div class="glass stat-card" style="position:relative">
+          <div class="hc tl"></div>
+          <div class="stat-num" style="color:var(--cyan)" id="statProj">—</div>
+          <div class="stat-lbl">Projects</div>
+        </div>
+        <div class="glass stat-card">
+          <div class="stat-num" style="color:var(--pink)" id="statUser">—</div>
+          <div class="stat-lbl">Users</div>
+        </div>
+        <div class="glass stat-card">
+          <div class="stat-num" style="color:var(--green);font-size:1.3rem" id="statDate">—</div>
+          <div class="stat-lbl">Today</div>
+        </div>
+        <div class="glass stat-card">
+          <div class="stat-num" style="color:var(--green)">ON</div>
+          <div class="stat-lbl">Status</div>
+        </div>
+      </div>
+      <div class="glass" style="padding:24px;position:relative">
+        <div class="hc tl"></div>
+        <p class="s-tag" style="margin-bottom:11px">// Quick Start</p>
+        <p style="font-family:var(--fmono);font-size:.68rem;line-height:2.3;letter-spacing:1px;color:var(--td)">
+          → Navigate to <span style="color:var(--cyan)">Projects</span> to manage portfolio entries<br>
+          → Click <span style="color:var(--cyan)">Add Project</span> to create a new entry with image upload<br>
+          → View <span style="color:var(--pink)">Users</span> to see all registered accounts<br>
+          → Use <span style="color:var(--green)">Settings</span> to edit portfolio content<br>
+          → Changes sync live to <span style="color:var(--pink)">Firestore</span> and appear instantly on the portfolio
+        </p>
+      </div>
+    </div>
+
+    <!-- ── Projects ── -->
+    <div class="adm-sec" id="sec-projects">
+      <div style="display:flex;justify-content:flex-end;margin-bottom:18px">
+        <button class="btn btn-cyan" id="addProjBtn"><span>+ Add Project</span></button>
+      </div>
+      <div class="glass" style="overflow:hidden">
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Image</th><th>Title</th><th>Description</th><th>Link</th><th>Actions</th></tr></thead>
+            <tbody id="projTbody">
+              <tr><td colspan="5" style="text-align:center;padding:28px;font-family:var(--fmono);color:var(--td)">// Click Projects in sidebar to load</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Users ── -->
+    <div class="adm-sec" id="sec-users">
+      <div class="glass" style="overflow:hidden">
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Name</th><th>Email</th><th>Method</th><th>Joined</th><th>Role</th></tr></thead>
+            <tbody id="userTbody">
+              <tr><td colspan="5" style="text-align:center;padding:28px;font-family:var(--fmono);color:var(--td)">// Click Users in sidebar to load</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Settings ── -->
+    <div class="adm-sec" id="sec-settings">
+      <div class="glass" style="padding:28px;position:relative;max-width:580px">
+        <div class="hc tl"></div>
+        <p class="s-tag" style="margin-bottom:18px">// Portfolio Content</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="fg"><label class="fl">About Me Text</label><textarea class="fi fi-ta" id="setAbout" rows="5"></textarea></div>
+          <div class="fg"><label class="fl">Contact Email</label><input type="email" class="fi" id="setEmail"/></div>
+          <div class="fg"><label class="fl">GitHub URL</label><input type="url" class="fi" id="setGH"/></div>
+          <div class="fg"><label class="fl">LinkedIn URL</label><input type="url" class="fi" id="setLI"/></div>
+          <button class="btn btn-green" id="saveSetBtn" style="align-self:flex-start"><span>// Save Settings</span></button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ADD/EDIT MODAL -->
+<div class="modal-ov" id="projModal">
+  <div class="modal-box" style="position:relative">
+    <div class="hc tl"></div><div class="hc br"></div>
+    <div class="modal-title" id="mTitle">// ADD PROJECT</div>
+    <button class="modal-close" id="mClose">✕</button>
+    <div class="modal-form">
+      <div class="fg"><label class="fl">Title *</label><input type="text" class="fi" id="inpTitle" placeholder="My Awesome Project"/></div>
+      <div class="fg"><label class="fl">Description</label><textarea class="fi fi-ta" id="inpDesc" placeholder="Brief project description..." rows="3"></textarea></div>
+      <div class="fg"><label class="fl">Project URL</label><input type="url" class="fi" id="inpLink" placeholder="https://..."/></div>
+      <div class="fg"><label class="fl">Tags (comma separated)</label><input type="text" class="fi" id="inpTags" placeholder="React, Firebase, UI Design"/></div>
+      <div class="fg">
+        <label class="fl">Project Image</label>
+        <div class="upload-zone">
+          <input type="file" id="imgInp" accept="image/*"/>
+          <div class="upload-lbl">⬡ Click to upload (PNG, JPG, WebP)</div>
+          <img id="imgPrev" class="img-prev" alt="preview"/>
+        </div>
+      </div>
+      <div class="msg" id="mMsg"></div>
+      <button class="btn btn-cyan btn-full" id="saveBtn"><span>// Save Project</span></button>
+    </div>
+  </div>
+</div>
+
+<script>
+const dot=document.getElementById('cur-dot'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function loop(){dot.style.left=mx+'px';dot.style.top=my+'px';rx+=(mx-rx-15)*.1;ry+=(my-ry-15)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('button,a,input,textarea').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('big'));el.addEventListener('mouseleave',()=>ring.classList.remove('big'))});
+const cv=document.getElementById('bg-canvas'),ctx=cv.getContext('2d');
+let drops=[];
+function r(){cv.width=innerWidth;cv.height=innerHeight;drops=Array(Math.floor(cv.width/15)).fill(1)}
+function d(){ctx.fillStyle='rgba(2,4,14,.08)';ctx.fillRect(0,0,cv.width,cv.height);ctx.font='11px monospace';drops.forEach((y,i)=>{ctx.fillStyle='rgba(0,229,255,.15)';ctx.fillText(Math.random()>.5?'1':'0',i*15,y*15);if(y*15>cv.height&&Math.random()>.975)drops[i]=0;drops[i]++})}
+r();setInterval(d,65);window.addEventListener('resize',r);
+</script>
+
+<script type="module" src="admin.js"></script>
+</body>
+</html>
