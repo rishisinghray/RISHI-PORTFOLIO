@@ -2,14 +2,14 @@
 // ║  admin.js  —  Admin Panel Logic               ║
 // ╚═══════════════════════════════════════════════╝
 
-import { auth, db, storage } from './firebase-config.js';
+import { auth, db } from './firebase-config.js';
 import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 import {
   collection, getDocs, addDoc, updateDoc, deleteDoc,
-  doc, query, orderBy, serverTimestamp, getCountFromServer
+  doc, setDoc, getDoc, query, orderBy, serverTimestamp, getCountFromServer
 } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 import {
-  ref as sref, uploadBytes, getDownloadURL, deleteObject
+  deleteObject
 } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js';
 import { getSession, clearSession, checkAdmin } from './auth.js';
 
@@ -115,8 +115,9 @@ function openModal(data){
   document.getElementById('inpLink').value=data?.link||'';
   document.getElementById('inpTags').value=data?.tags||'';
   const prev=document.getElementById('imgPrev');
-  if(data?.image){prev.src=data.image;prev.style.display='block'}else{prev.style.display='none';prev.src=''}
-  document.getElementById('imgInp').value='';
+  const urlInp=document.getElementById('inpImgUrl');
+  if(data?.image){urlInp.value=data.image;prev.src=data.image;prev.style.display='block'}
+  else{urlInp.value='';prev.style.display='none';prev.src=''}
   document.getElementById('mMsg').style.display='none';
   document.getElementById('projModal').classList.add('open');
 }
@@ -130,6 +131,11 @@ window.openEdit=async(id)=>{
 function closeModal(){document.getElementById('projModal').classList.remove('open')}
 document.getElementById('mClose').addEventListener('click',closeModal);
 document.getElementById('projModal').addEventListener('click',e=>{if(e.target.id==='projModal')closeModal()});
+document.getElementById('inpImgUrl').addEventListener('input',()=>{
+  const url=document.getElementById('inpImgUrl').value.trim();
+  const prev=document.getElementById('imgPrev');
+  if(url){prev.src=url;prev.style.display='block';}else{prev.style.display='none';prev.src='';}
+});
 
 document.getElementById('imgInp').addEventListener('change',()=>{
   const f=document.getElementById('imgInp').files[0];
@@ -138,9 +144,7 @@ document.getElementById('imgInp').addEventListener('change',()=>{
   reader.onload=ev=>{const p=document.getElementById('imgPrev');p.src=ev.target.result;p.style.display='block'};
   reader.readAsDataURL(f);
 });
-
-async function uploadImg(file){
-  const path=`projects/${Date.now()}_${file.name.replace(/\s/g,'_')}`;
+_${file.name.replace(/\s/g,'_')}`;
   const r=sref(storage,path);
   const s=await uploadBytes(r,file);
   return await getDownloadURL(s.ref);
@@ -151,13 +155,11 @@ document.getElementById('saveBtn').addEventListener('click',async()=>{
   const desc=document.getElementById('inpDesc').value.trim();
   const link=document.getElementById('inpLink').value.trim();
   const tags=document.getElementById('inpTags').value.trim();
+  const img=document.getElementById('inpImgUrl').value.trim()||pendingImg;
   if(!title){showMMsg('Title is required.','e');return}
   const btn=document.getElementById('saveBtn');
   btn.disabled=true;btn.querySelector('span').innerHTML='<span class="bspin"></span> Saving...';
   try{
-    let img=pendingImg;
-    const file=document.getElementById('imgInp').files[0];
-    if(file)img=await uploadImg(file);
     const data={title,description:desc,link,tags,image:img};
     if(editId){await updateDoc(doc(db,'projects',editId),data);toast('// Project updated','ok')}
     else{await addDoc(collection(db,'projects'),{...data,createdAt:serverTimestamp()});toast('// Project added','ok')}
@@ -206,16 +208,27 @@ async function loadUsers(){
 // ════════════════════════════════════════
 //  SETTINGS
 // ════════════════════════════════════════
-function loadSettings(){
-  document.getElementById('setAbout').value  = localStorage.getItem('r_about')    ||"I'm Rishi — a full-stack developer who builds futuristic digital experiences.";
-  document.getElementById('setEmail').value  = localStorage.getItem('r_email')    ||'rishi@dev.com';
-  document.getElementById('setGH').value     = localStorage.getItem('r_github')   ||'https://github.com';
-  document.getElementById('setLI').value     = localStorage.getItem('r_linkedin') ||'https://linkedin.com';
+async function loadSettings(){
+  try{
+    const snap = await getDoc(doc(db,'settings','portfolio'));
+    const d = snap.exists() ? snap.data() : {};
+    document.getElementById('setAbout').value  = d.about   ||"I'm Rishi — a full-stack developer who builds futuristic digital experiences.";
+    document.getElementById('setEmail').value  = d.email   ||'rishisinghray@gmail.com';
+    document.getElementById('setGH').value     = d.github  ||'https://github.com/rishisinghray';
+    document.getElementById('setLI').value     = d.linkedin||'https://www.linkedin.com/in/rishisinghray';
+  }catch(e){console.error('Settings load error:',e)}
 }
-document.getElementById('saveSetBtn').addEventListener('click',()=>{
-  localStorage.setItem('r_about',   document.getElementById('setAbout').value);
-  localStorage.setItem('r_email',   document.getElementById('setEmail').value);
-  localStorage.setItem('r_github',  document.getElementById('setGH').value);
-  localStorage.setItem('r_linkedin',document.getElementById('setLI').value);
-  toast('// Settings saved locally','ok');
+document.getElementById('saveSetBtn').addEventListener('click',async()=>{
+  const btn=document.getElementById('saveSetBtn');
+  btn.disabled=true; btn.textContent='Saving...';
+  try{
+    await setDoc(doc(db,'settings','portfolio'),{
+      about:    document.getElementById('setAbout').value,
+      email:    document.getElementById('setEmail').value,
+      github:   document.getElementById('setGH').value,
+      linkedin: document.getElementById('setLI').value,
+    },{merge:true});
+    toast('// Settings saved!','ok');
+  }catch(e){toast('Error: '+e.message,'err')}
+  finally{btn.disabled=false; btn.textContent='// Save Settings'}
 });

@@ -128,7 +128,7 @@
     <div>
       <div class="ci">
         <div class="ci-icon">✉</div>
-        <div><div class="ci-lbl">Email</div><div class="ci-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0d7f647e65644d69687b236e6260">[email&#160;protected]</a></div></div>
+        <div><div class="ci-lbl">Email</div><div class="ci-val"><a id="contactEmail" href="mailto:rishisinghray@gmail.com">rishisinghray@gmail.com</a></div></div>
       </div>
       <div class="ci">
         <div class="ci-icon">📍</div>
@@ -139,8 +139,8 @@
         <div><div class="ci-lbl">Status</div><div class="ci-val" style="color:var(--green)">Available for Work</div></div>
       </div>
       <div class="social-row">
-        <a href="https://github.com/rishisinghray" target="_blank" class="soc">GH</a>
-        <a href="https://linkedin.com/in/rishisinghray" target="_blank" class="soc">LI</a>
+        <a id="ghLink" href="https://github.com/rishisinghray" target="_blank" class="soc">GH</a>
+        <a id="liLink" href="https://www.linkedin.com/in/rishisinghray" target="_blank" class="soc">LI</a>
         <a href="https://twitter.com" target="_blank" class="soc">TW</a>
         <a href="https://youtube.com" target="_blank" class="soc">YT</a>
       </div>
@@ -265,7 +265,7 @@ function toast(msg,type='info'){const t=document.getElementById('toast');t.textC
 <script type="module">
 import { auth, db } from './firebase-config.js';
 import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-import { collection, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+import { collection, getDocs, getDoc, doc, query, orderBy } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 import { getSession, clearSession, ADMIN_UID } from './auth.js';
 
 // Auth guard
