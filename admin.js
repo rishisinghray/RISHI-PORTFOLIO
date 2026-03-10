@@ -134,13 +134,7 @@ document.getElementById('inpImgUrl').addEventListener('input',()=>{
   if(url){prev.src=url;prev.style.display='block';}else{prev.style.display='none';prev.src='';}
 });
 
-document.getElementById('imgInp').addEventListener('change',()=>{
-  const f=document.getElementById('imgInp').files[0];
-  if(!f)return;
-  const reader=new FileReader();
-  reader.onload=ev=>{const p=document.getElementById('imgPrev');p.src=ev.target.result;p.style.display='block'};
-  reader.readAsDataURL(f);
-});
+
 
 document.getElementById('saveBtn').addEventListener('click',async()=>{
   const title=document.getElementById('inpTitle').value.trim();
