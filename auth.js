@@ -21,7 +21,7 @@ export function checkAdmin(uid, email) {
 // ── EmailJS config ─────────────────────────────────
 const EJS_SERVICE  = "service_portfolio";
 const EJS_TEMPLATE = "template_2esmohl";
-const EJS_KEY      = "-CSqRUJJOnStE5syH2";
+const EJS_KEY      = "d37HyAQ53w40TM5w0";
 
 // ── In-memory OTP store ────────────────────────────
 const _store = {};
