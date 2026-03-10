@@ -4,15 +4,13 @@
 
 import { auth, db, googleProvider } from "./firebase-config.js";
 import {
-  signInWithPopup,
-  signOut,
-  onAuthStateChanged,
+  signInWithPopup, signOut, onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import {
   doc, setDoc, getDoc, serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// ── Admin identification ───────────────────────────
+// ── Admin ──────────────────────────────────────────
 export const ADMIN_EMAIL = "rishisinghray@gmail.com";
 export const ADMIN_UID   = "kpFakxL3WjfaQE2KeCepDaO8rHO2";
 
@@ -28,56 +26,33 @@ const EJS_KEY      = "-CSqRUJJOnStE5syH2";
 // ── In-memory OTP store ────────────────────────────
 const _store = {};
 
-// ── Load EmailJS — direct script tag approach ──────
-function _loadEJS() {
-  return new Promise((resolve, reject) => {
-    // If already loaded, just init and resolve
-    if (window.emailjs) {
-      try { emailjs.init({ publicKey: EJS_KEY }); } catch(e) {}
-      resolve();
-      return;
-    }
-    const script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
-    script.async = true;
-    script.onload = () => {
-      // Small delay to ensure emailjs global is ready
-      setTimeout(() => {
-        try {
-          emailjs.init({ publicKey: EJS_KEY });
-          resolve();
-        } catch(e) {
-          reject(e);
-        }
-      }, 100);
-    };
-    script.onerror = () => reject(new Error("Failed to load EmailJS SDK"));
-    document.head.appendChild(script);
-  });
-}
-
-// ── OTP: Generate & Send ───────────────────────────
+// ── OTP: Send ─────────────────────────────────────
 export async function sendOTP(email) {
   const code = String(Math.floor(100000 + Math.random() * 900000));
   _store[email] = { code, exp: Date.now() + 10 * 60 * 1000 };
 
-  try {
-    await _loadEJS();
-  } catch(e) {
-    throw new Error("Could not load email service. Check your connection.");
-  }
-
+  // Load EmailJS if not already loaded
   if (!window.emailjs) {
-    throw new Error("Email service not available. Please refresh and try again.");
+    await new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+      s.onload = () => { setTimeout(resolve, 150); };
+      s.onerror = () => reject(new Error("EmailJS SDK load failed"));
+      document.head.appendChild(s);
+    });
   }
 
+  // Init emailjs
+  try { emailjs.init({ publicKey: EJS_KEY }); } catch(e) {}
+
+  // Send email
   const result = await emailjs.send(EJS_SERVICE, EJS_TEMPLATE, {
     to_email: email,
     otp_code: code,
   });
 
   if (result.status !== 200) {
-    throw new Error("Email delivery failed. Status: " + result.status);
+    throw new Error("Send failed, status: " + result.status);
   }
 
   return true;
@@ -86,7 +61,7 @@ export async function sendOTP(email) {
 // ── OTP: Verify ────────────────────────────────────
 export function verifyOTP(email, input) {
   const entry = _store[email];
-  if (!entry)              return { ok: false, msg: "No OTP found. Request a new one." };
+  if (!entry) return { ok: false, msg: "No OTP found. Request a new one." };
   if (Date.now() > entry.exp) {
     delete _store[email];
     return { ok: false, msg: "OTP expired. Request a new one." };
@@ -96,7 +71,7 @@ export function verifyOTP(email, input) {
   return { ok: true };
 }
 
-// ── Firestore: Save / update user ─────────────────
+// ── Firestore: Save user ───────────────────────────
 export async function saveUser(uid, email, name = "", photo = "", method = "email") {
   const ref  = doc(db, "users", uid);
   const snap = await getDoc(ref);
@@ -109,14 +84,14 @@ export async function saveUser(uid, email, name = "", photo = "", method = "emai
       loginMethod: method,
       isAdmin: admin,
       createdAt: serverTimestamp(),
-      lastLogin:  serverTimestamp(),
+      lastLogin: serverTimestamp(),
     });
   } else {
     await setDoc(ref, { lastLogin: serverTimestamp() }, { merge: true });
   }
 }
 
-// ── Google sign-in ─────────────────────────────────
+// ── Google login ───────────────────────────────────
 export async function googleLogin() {
   const res = await signInWithPopup(auth, googleProvider);
   const u   = res.user;
