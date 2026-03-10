@@ -43,14 +43,13 @@ document.getElementById('logoutBtn').addEventListener('click', async()=>{
   if(fbUser) await signOut(auth);
   clearSession(); location.href='index.html';
 });
-document.getElementById('portfolioBtn').addEventListener('click',()=>{ location.href='portfolio.html'; });
 
 // ── Sidebar nav ───────────────────────────────────
-document.querySelectorAll('.sbi').forEach(item=>{
+document.querySelectorAll('.sb-item').forEach(item=>{
   item.addEventListener('click',()=>{
     const sec = item.dataset.sec;
-    document.querySelectorAll('.sbi').forEach(i=>i.classList.remove('on'));
-    document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+    document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('on'));
+    document.querySelectorAll('.adm-sec').forEach(s=>s.classList.remove('on'));
     item.classList.add('on');
     document.getElementById('sec-'+sec).classList.add('on');
     if(sec==='projects') loadProjects();
@@ -77,7 +76,7 @@ document.getElementById('statDate').textContent = new Date().toLocaleDateString(
 //  PROJECTS
 // ════════════════════════════════════════
 async function loadProjects(){
-  const grid = document.getElementById('projTable');
+  const grid = document.getElementById('projTbody');
   grid.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:28px;font-family:var(--fmono);color:var(--td)">// Loading...</td></tr>';
   try{
     const snap = await getDocs(query(collection(db,'projects'), orderBy('createdAt','desc')));
@@ -227,7 +226,7 @@ async function loadSettings(){
 
 document.getElementById('saveSetBtn').addEventListener('click', async()=>{
   const btn = document.getElementById('saveSetBtn');
-  btn.disabled = true; btn.textContent = 'Saving...';
+  btn.disabled = true; btn.querySelector('span').textContent = 'Saving...';
   try{
     await setDoc(doc(db,'settings','portfolio'),{
       about:    document.getElementById('setAbout').value,
@@ -237,5 +236,5 @@ document.getElementById('saveSetBtn').addEventListener('click', async()=>{
     },{ merge:true });
     toast('// Settings saved!','ok');
   } catch(e){ toast('Error: '+e.message,'err'); }
-  finally{ btn.disabled=false; btn.textContent='// Save Settings'; }
+  finally{ btn.disabled=false; btn.querySelector('span').textContent='// Save Settings'; }
 });
