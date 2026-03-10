@@ -8,9 +8,6 @@ import {
   collection, getDocs, addDoc, updateDoc, deleteDoc,
   doc, setDoc, getDoc, query, orderBy, serverTimestamp
 } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-import {
-  deleteObject
-} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js';
 import { getSession, clearSession, checkAdmin } from './auth.js';
 
 // ── Auth guard (admin only) ───────────────────────
@@ -144,11 +141,6 @@ document.getElementById('imgInp').addEventListener('change',()=>{
   reader.onload=ev=>{const p=document.getElementById('imgPrev');p.src=ev.target.result;p.style.display='block'};
   reader.readAsDataURL(f);
 });
-_${file.name.replace(/\s/g,'_')}`;
-  const r=sref(storage,path);
-  const s=await uploadBytes(r,file);
-  return await getDownloadURL(s.ref);
-}
 
 document.getElementById('saveBtn').addEventListener('click',async()=>{
   const title=document.getElementById('inpTitle').value.trim();
@@ -172,7 +164,7 @@ window.delProj=async(id,imgUrl)=>{
   if(!confirm('Delete this project? This cannot be undone.'))return;
   try{
     await deleteDoc(doc(db,'projects',id));
-    if(imgUrl&&imgUrl.includes('firebasestorage'))try{await deleteObject(sref(storage,imgUrl))}catch(_){}
+    
     toast('// Deleted','ok');loadProjects();loadStats();
   }catch(e){toast('Delete failed: '+e.message,'err')}
 };
