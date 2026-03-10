@@ -6,7 +6,7 @@ import { auth, db } from './firebase-config.js';
 import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 import {
   collection, getDocs, addDoc, updateDoc, deleteDoc,
-  doc, setDoc, getDoc, query, orderBy, serverTimestamp, getCountFromServer
+  doc, setDoc, getDoc, query, orderBy, serverTimestamp
 } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 import {
   deleteObject
@@ -63,11 +63,11 @@ document.getElementById('logoutBtn').addEventListener('click',async()=>{
 async function loadStats(){
   try{
     const [ps,us]=await Promise.all([
-      getCountFromServer(collection(db,'projects')),
-      getCountFromServer(collection(db,'users')),
+      getDocs(collection(db,'projects')),
+      getDocs(collection(db,'users')),
     ]);
-    document.getElementById('statProj').textContent=ps.data().count;
-    document.getElementById('statUser').textContent=us.data().count;
+    document.getElementById('statProj').textContent=ps.size;
+    document.getElementById('statUser').textContent=us.size;
   }catch(e){console.warn('Stats:',e)}
 }
 loadStats();
