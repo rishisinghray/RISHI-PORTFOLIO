@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Privacy Policy — RISHI.OS</title>
+<meta name="description" content="Privacy Policy for RISHI Portfolio — how we collect, use, and protect your data."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://rishisinghray.github.io/RISHI-PORTFOLIO/privacy.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Share+Tech+Mono&family=Exo+2:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#02040e;--nav:#060a18;--card:rgba(0,229,255,.04);
+  --cyan:#00e5ff;--pink:#ff2070;--green:#00ffaa;--gold:#ffd060;
+  --tb:#e8f4ff;--tm:#8899bb;--td:#445566;
+  --border:rgba(0,229,255,.12);
+  --fhead:'Orbitron',monospace;--fmono:'Share Tech Mono',monospace;--fbody:'Exo 2',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--tm);font-family:var(--fbody);font-size:15px;line-height:1.8;min-height:100vh;overflow-x:hidden;}
+/* scanlines */
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,229,255,.015) 2px,rgba(0,229,255,.015) 4px);pointer-events:none;z-index:999;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(6,10,24,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%;}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.nav-logo{font-family:var(--fhead);font-size:.85rem;font-weight:700;letter-spacing:3px;color:var(--cyan);text-decoration:none;}
+.nav-logo em{color:var(--pink);font-style:normal;}
+.nav-links{display:flex;gap:6px;align-items:center;}
+.nav-links a{font-family:var(--fmono);font-size:.65rem;letter-spacing:2px;color:var(--tm);text-decoration:none;padding:6px 12px;border:1px solid transparent;border-radius:2px;transition:all .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan);border-color:var(--border);background:rgba(0,229,255,.05);}
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px;}
+.hamburger span{width:22px;height:2px;background:var(--cyan);transition:all .3s;}
+.mob-menu{display:none;position:fixed;inset:0;top:60px;background:rgba(6,10,24,.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:24px;}
+.mob-menu.open{display:flex;}
+.mob-menu a{font-family:var(--fmono);font-size:.8rem;letter-spacing:3px;color:var(--tm);text-decoration:none;padding:12px 24px;border:1px solid var(--border);}
+.mob-menu a:hover,.mob-menu a.active{color:var(--cyan);}
+
+/* HERO */
+.page-hero{padding:80px 5% 40px;text-align:center;position:relative;}
+.page-hero::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);}
+.page-tag{font-family:var(--fmono);font-size:.65rem;letter-spacing:4px;color:var(--pink);margin-bottom:16px;}
+.page-title{font-family:var(--fhead);font-size:clamp(1.6rem,4vw,2.8rem);font-weight:700;color:var(--tb);letter-spacing:2px;line-height:1.2;}
+.page-sub{font-family:var(--fmono);font-size:.7rem;color:var(--td);margin-top:12px;letter-spacing:2px;}
+
+/* CONTENT */
+.content-wrap{max-width:800px;margin:0 auto;padding:60px 5% 80px;}
+.policy-section{margin-bottom:48px;padding:28px 32px;background:var(--card);border:1px solid var(--border);border-radius:2px;position:relative;}
+.policy-section::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--cyan),transparent);}
+.section-num{font-family:var(--fmono);font-size:.6rem;color:var(--pink);letter-spacing:3px;margin-bottom:8px;}
+.section-title{font-family:var(--fhead);font-size:.9rem;font-weight:600;color:var(--cyan);letter-spacing:2px;margin-bottom:16px;}
+.policy-section p{color:var(--tm);font-size:.9rem;line-height:1.9;margin-bottom:12px;}
+.policy-section p:last-child{margin-bottom:0;}
+.policy-section ul{list-style:none;padding:0;margin:12px 0;}
+.policy-section ul li{padding:6px 0 6px 20px;position:relative;color:var(--tm);font-size:.88rem;}
+.policy-section ul li::before{content:'→';position:absolute;left:0;color:var(--cyan);font-family:var(--fmono);}
+.highlight{color:var(--cyan);}
+.highlight-g{color:var(--green);}
+.updated{font-family:var(--fmono);font-size:.65rem;color:var(--td);text-align:center;margin-bottom:40px;letter-spacing:2px;}
+
+/* COOKIE BANNER */
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:rgba(6,10,24,.97);border-top:1px solid var(--border);padding:16px 5%;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:200;backdrop-filter:blur(8px);}
+.cookie-banner p{font-family:var(--fmono);font-size:.65rem;color:var(--tm);letter-spacing:1px;}
+.cookie-banner a{color:var(--cyan);}
+.cookie-btn{font-family:var(--fmono);font-size:.65rem;letter-spacing:2px;background:var(--cyan);color:var(--bg);border:none;padding:8px 20px;cursor:pointer;white-space:nowrap;}
+.cookie-banner.hidden{display:none;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:32px 5%;text-align:center;}
+.footer-inner{max-width:1100px;margin:0 auto;}
+.footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:16px;flex-wrap:wrap;}
+.footer-links a{font-family:var(--fmono);font-size:.62rem;letter-spacing:2px;color:var(--td);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--cyan);}
+.footer-copy{font-family:var(--fmono);font-size:.62rem;color:var(--td);letter-spacing:1px;}
+.footer-copy span{color:var(--cyan);}
+
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .policy-section{padding:20px;}
+  .cookie-banner{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="portfolio.html" class="nav-logo">RISHI<em>.OS</em></a>
+    <div class="nav-links">
+      <a href="portfolio.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html" class="active">Privacy</a>
+    </div>
+    <div class="hamburger" id="hamBtn"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <a href="portfolio.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="privacy.html" class="active">Privacy</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-tag">// LEGAL DOCUMENT</div>
+  <h1 class="page-title">PRIVACY POLICY</h1>
+  <p class="page-sub">Last updated: March 2026</p>
+</div>
+
+<div class="content-wrap">
+  <p class="updated">// EFFECTIVE DATE: 01 MARCH 2026 — RISHI.OS PORTFOLIO</p>
+
+  <div class="policy-section">
+    <div class="section-num">01 //</div>
+    <div class="section-title">INTRODUCTION</div>
+    <p>Welcome to <span class="highlight">RISHI.OS</span> — the developer portfolio of Rishi Singh Ray. This Privacy Policy explains how we collect, use, and protect information when you visit <span class="highlight">rishisinghray.github.io/RISHI-PORTFOLIO</span>.</p>
+    <p>By using this website, you agree to the practices described in this policy. If you do not agree, please discontinue use of the site.</p>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-num">02 //</div>
+    <div class="section-title">INFORMATION WE COLLECT</div>
+    <p>We may collect the following types of information:</p>
+    <ul>
+      <li><strong>Account Data:</strong> Email address and display name when you sign in via Google or Email OTP</li>
+      <li><strong>Usage Data:</strong> Pages visited, time on site, and browser/device type via analytics tools</li>
+      <li><strong>Communication Data:</strong> Messages sent through the contact form</li>
+      <li><strong>Cookies:</strong> Session cookies for authentication and preference cookies for analytics</li>
+    </ul>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-num">03 //</div>
+    <div class="section-title">GOOGLE ADSENSE & ADVERTISING</div>
+    <p>This site may use <span class="highlight">Google AdSense</span> to display advertisements. Google AdSense uses cookies and web beacons to serve ads based on your prior visits to this website and other websites on the internet.</p>
+    <p>Google's use of advertising cookies enables it and its partners to serve ads based on your visit to this site and/or other sites on the Internet. You may opt out of personalized advertising by visiting <span class="highlight">Google Ads Settings</span> at <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener" style="color:var(--cyan)">google.com/settings/ads</a>.</p>
+    <ul>
+      <li>Google may use DoubleClick cookies for interest-based advertising</li>
+      <li>Third-party vendors may use cookies to serve ads on this site</li>
+      <li>Users can opt out via the Network Advertising Initiative at <a href="https://optout.networkadvertising.org" target="_blank" rel="noopener" style="color:var(--cyan)">optout.networkadvertising.org</a></li>
+    </ul>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-num">04 //</div>
+    <div class="section-title">COOKIES POLICY</div>
+    <p>We use cookies to enhance your experience. Types of cookies used:</p>
+    <ul>
+      <li><span class="highlight">Essential Cookies:</span> Required for login and session management via Firebase Authentication</li>
+      <li><span class="highlight">Analytics Cookies:</span> Google Analytics to understand site usage (anonymized)</li>
+      <li><span class="highlight">Advertising Cookies:</span> Google AdSense for relevant ad delivery</li>
+      <li><span class="highlight">Preference Cookies:</span> Remember your settings and preferences</li>
+    </ul>
+    <p>You can control cookies through your browser settings. Disabling cookies may affect site functionality.</p>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-num">05 //</div>
+    <div class="section-title">HOW WE USE YOUR DATA</div>
+    <ul>
+      <li>Provide and maintain authentication services</li>
+      <li>Respond to contact form inquiries</li>
+      <li>Analyze site traffic to improve content</li>
+      <li>Display relevant advertisements via Google AdSense</li>
+      <li>Comply with legal obligations</li>
+    </ul>
+    <p>We do <span class="highlight">not</span> sell, trade, or rent your personal information to third parties.</p>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-num">06 //</div>
+    <div class="section-title">FIREBASE & THIRD-PARTY SERVICES</div>
+    <p>This site uses <span class="highlight">Google Firebase</span> for authentication and database services. Firebase collects certain usage data as described in <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener" style="color:var(--cyan)">Google's Privacy Policy</a>.</p>
+    <ul>
+      <li>Firebase Authentication — manages login sessions</li>
+      <li>Firebase Firestore — stores project data and user profiles</li>
+      <li>Firebase Storage — stores project images</li>
+      <li>EmailJS — sends OTP verification emails</li>
+    </ul>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-num">07 //</div>
+    <div class="section-title">YOUR RIGHTS</div>
+    <ul>
+      <li>Access the personal data we hold about you</li>
+      <li>Request correction of inaccurate data</li>
+      <li>Request deletion of your account and data</li>
+      <li>Opt out of analytics and advertising cookies</li>
+      <li>Lodge a complaint with a data protection authority</li>
+    </ul>
+    <p>To exercise these rights, contact us at <span class="highlight">rishisinghray@gmail.com</span>.</p>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-num">08 //</div>
+    <div class="section-title">CONTACT</div>
+    <p>Questions about this Privacy Policy? Contact us:</p>
+    <ul>
+      <li>Email: <span class="highlight">rishisinghray@gmail.com</span></li>
+      <li>GitHub: <a href="https://github.com/rishisinghray" target="_blank" rel="noopener" style="color:var(--cyan)">github.com/rishisinghray</a></li>
+      <li>Website: <a href="https://rishisinghray.github.io/RISHI-PORTFOLIO/" style="color:var(--cyan)">rishisinghray.github.io/RISHI-PORTFOLIO</a></li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="portfolio.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <p class="footer-copy">© 2026 <span>RISHI SINGH RAY</span> — All rights reserved</p>
+  </div>
+</footer>
+
+<!-- Cookie Banner -->
+<div class="cookie-banner" id="cookieBanner">
+  <p>This site uses cookies for authentication, analytics, and advertising (Google AdSense). <a href="privacy.html">Learn more</a></p>
+  <button class="cookie-btn" id="cookieAccept">// ACCEPT</button>
+</div>
+
+<script>
+document.getElementById('hamBtn').onclick=()=>document.getElementById('mobMenu').classList.toggle('open');
+if(localStorage.getItem('cookies_ok')){document.getElementById('cookieBanner').classList.add('hidden');}
+document.getElementById('cookieAccept').onclick=()=>{localStorage.setItem('cookies_ok','1');document.getElementById('cookieBanner').classList.add('hidden');};
+</script>
+</body>
+</html>
