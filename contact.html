@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="google-site-verification" content="FN_rYkDHJwWptDs073ocnqPQl4s5OBSclNzBT82yPGg" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6559058832938118" crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Contact — Rishi Singh Ray | Developer</title>
+<meta name="description" content="Get in touch with Rishi Singh Ray — full-stack developer. Available for freelance projects, collaborations, and opportunities."/>
+<meta name="keywords" content="contact Rishi Singh Ray, hire developer, freelance developer India"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://rishisinghray.github.io/RISHI-PORTFOLIO/contact.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Share+Tech+Mono&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#02040e;--nav:#060a18;--card:rgba(0,229,255,.04);
+  --cyan:#00e5ff;--pink:#ff2070;--green:#00ffaa;--gold:#ffd060;
+  --tb:#e8f4ff;--tm:#8899bb;--td:#445566;
+  --border:rgba(0,229,255,.12);
+  --fhead:'Orbitron',monospace;--fmono:'Share Tech Mono',monospace;--fbody:'Exo 2',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--tm);font-family:var(--fbody);font-size:15px;line-height:1.8;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,229,255,.015) 2px,rgba(0,229,255,.015) 4px);pointer-events:none;z-index:999;}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(6,10,24,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%;}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.nav-logo{font-family:var(--fhead);font-size:.85rem;font-weight:700;letter-spacing:3px;color:var(--cyan);text-decoration:none;}
+.nav-logo em{color:var(--pink);font-style:normal;}
+.nav-links{display:flex;gap:6px;align-items:center;}
+.nav-links a{font-family:var(--fmono);font-size:.65rem;letter-spacing:2px;color:var(--tm);text-decoration:none;padding:6px 12px;border:1px solid transparent;border-radius:2px;transition:all .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan);border-color:var(--border);background:rgba(0,229,255,.05);}
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px;}
+.hamburger span{width:22px;height:2px;background:var(--cyan);transition:all .3s;}
+.mob-menu{display:none;position:fixed;inset:0;top:60px;background:rgba(6,10,24,.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:24px;}
+.mob-menu.open{display:flex;}
+.mob-menu a{font-family:var(--fmono);font-size:.8rem;letter-spacing:3px;color:var(--tm);text-decoration:none;padding:12px 24px;border:1px solid var(--border);}
+.mob-menu a:hover,.mob-menu a.active{color:var(--cyan);}
+
+/* HERO */
+.page-hero{padding:80px 5% 60px;text-align:center;}
+.page-tag{font-family:var(--fmono);font-size:.65rem;letter-spacing:4px;color:var(--pink);margin-bottom:16px;}
+.page-title{font-family:var(--fhead);font-size:clamp(1.6rem,4vw,2.8rem);font-weight:700;color:var(--tb);letter-spacing:2px;}
+.page-sub{font-family:var(--fbody);font-size:1rem;color:var(--tm);margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto;}
+
+/* LAYOUT */
+.contact-layout{max-width:1100px;margin:0 auto;padding:20px 5% 80px;display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:start;}
+
+/* FORM */
+.form-box{background:var(--card);border:1px solid var(--border);padding:36px;position:relative;}
+.form-box::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--cyan),var(--pink),transparent);}
+.form-title{font-family:var(--fmono);font-size:.7rem;letter-spacing:3px;color:var(--cyan);margin-bottom:28px;}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:20px;}
+.fl{font-family:var(--fmono);font-size:.6rem;letter-spacing:3px;color:var(--td);}
+.fi{background:rgba(0,229,255,.03);border:1px solid var(--border);color:var(--tb);font-family:var(--fbody);font-size:.9rem;padding:11px 14px;outline:none;transition:border .2s;width:100%;}
+.fi:focus{border-color:var(--cyan);}
+.fi-ta{resize:vertical;min-height:120px;}
+select.fi option{background:var(--bg);}
+.btn-send{width:100%;font-family:var(--fmono);font-size:.7rem;letter-spacing:3px;padding:14px;background:transparent;border:1px solid var(--cyan);color:var(--cyan);cursor:pointer;transition:all .2s;margin-top:8px;}
+.btn-send:hover{background:rgba(0,229,255,.08);}
+.btn-send:disabled{opacity:.5;cursor:not-allowed;}
+.form-msg{font-family:var(--fmono);font-size:.65rem;padding:10px 14px;margin-top:12px;display:none;}
+.msg-ok{border:1px solid var(--green);color:var(--green);background:rgba(0,255,170,.05);}
+.msg-err{border:1px solid var(--pink);color:var(--pink);background:rgba(255,32,112,.05);}
+
+/* INFO CARDS */
+.info-stack{display:flex;flex-direction:column;gap:16px;}
+.info-card{background:var(--card);border:1px solid var(--border);padding:20px 24px;display:flex;gap:16px;align-items:flex-start;transition:border-color .2s;}
+.info-card:hover{border-color:rgba(0,229,255,.3);}
+.info-icon{font-size:1.2rem;min-width:28px;margin-top:2px;}
+.info-label{font-family:var(--fmono);font-size:.58rem;letter-spacing:3px;color:var(--pink);margin-bottom:4px;}
+.info-val{font-size:.9rem;color:var(--tb);}
+.info-val a{color:var(--cyan);text-decoration:none;}
+.info-val a:hover{text-decoration:underline;}
+.social-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
+.soc-btn{font-family:var(--fmono);font-size:.6rem;letter-spacing:2px;padding:8px 16px;border:1px solid var(--border);color:var(--tm);text-decoration:none;transition:all .2s;}
+.soc-btn:hover{border-color:var(--cyan);color:var(--cyan);}
+.avail-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--fmono);font-size:.6rem;letter-spacing:2px;color:var(--green);border:1px solid rgba(0,255,170,.2);padding:6px 14px;margin-top:16px;}
+.avail-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,255,170,.4);}50%{box-shadow:0 0 0 5px rgba(0,255,170,0);}}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:32px 5%;text-align:center;}
+.footer-inner{max-width:1100px;margin:0 auto;}
+.footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:16px;flex-wrap:wrap;}
+.footer-links a{font-family:var(--fmono);font-size:.62rem;letter-spacing:2px;color:var(--td);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--cyan);}
+.footer-copy{font-family:var(--fmono);font-size:.62rem;color:var(--td);}
+.footer-copy span{color:var(--cyan);}
+
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .contact-layout{grid-template-columns:1fr;}
+  .form-box{padding:24px 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="portfolio.html" class="nav-logo">RISHI<em>.OS</em></a>
+    <div class="nav-links">
+      <a href="portfolio.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+    <div class="hamburger" id="hamBtn"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <a href="portfolio.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="contact.html" class="active">Contact</a>
+  <a href="privacy.html">Privacy</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-tag">// ESTABLISH CONNECTION</div>
+  <h1 class="page-title">CONTACT ME</h1>
+  <p class="page-sub">Have a project in mind? Let's build something futuristic together.</p>
+</div>
+
+<div class="contact-layout">
+  <!-- FORM -->
+  <div class="form-box">
+    <div class="form-title">// SEND MESSAGE</div>
+    <form id="contactForm" novalidate>
+      <div class="fg">
+        <label class="fl" for="cName">YOUR NAME</label>
+        <input type="text" class="fi" id="cName" placeholder="John Doe" required/>
+      </div>
+      <div class="fg">
+        <label class="fl" for="cEmail">EMAIL ADDRESS</label>
+        <input type="email" class="fi" id="cEmail" placeholder="you@example.com" required/>
+      </div>
+      <div class="fg">
+        <label class="fl" for="cSubject">SUBJECT</label>
+        <select class="fi" id="cSubject">
+          <option value="">Select a topic...</option>
+          <option>Project Collaboration</option>
+          <option>Freelance Work</option>
+          <option>Job Opportunity</option>
+          <option>Technical Question</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label class="fl" for="cMsg">MESSAGE</label>
+        <textarea class="fi fi-ta" id="cMsg" placeholder="Describe your project or inquiry..." required></textarea>
+      </div>
+      <button type="submit" class="btn-send" id="sendBtn">// TRANSMIT MESSAGE</button>
+      <div class="form-msg" id="formMsg"></div>
+    </form>
+  </div>
+
+  <!-- INFO -->
+  <div class="info-stack">
+    <div class="avail-badge">
+      <span class="avail-dot"></span> AVAILABLE FOR WORK
+    </div>
+
+    <div class="info-card">
+      <div class="info-icon">✉</div>
+      <div>
+        <div class="info-label">EMAIL</div>
+        <div class="info-val"><a href="mailto:rishisinghray@gmail.com">rishisinghray@gmail.com</a></div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-icon">⌥</div>
+      <div>
+        <div class="info-label">GITHUB</div>
+        <div class="info-val"><a href="https://github.com/rishisinghray" target="_blank" rel="noopener">github.com/rishisinghray</a></div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-icon">◈</div>
+      <div>
+        <div class="info-label">LINKEDIN</div>
+        <div class="info-val"><a href="https://www.linkedin.com/in/rishisinghray" target="_blank" rel="noopener">linkedin.com/in/rishisinghray</a></div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-icon">⬡</div>
+      <div>
+        <div class="info-label">LOCATION</div>
+        <div class="info-val">India 🇮🇳</div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-icon">⏱</div>
+      <div>
+        <div class="info-label">RESPONSE TIME</div>
+        <div class="info-val">Usually within 24 hours</div>
+      </div>
+    </div>
+
+    <div style="padding:20px 24px;background:var(--card);border:1px solid var(--border);">
+      <div class="info-label" style="margin-bottom:12px;">SOCIAL LINKS</div>
+      <div class="social-row">
+        <a href="https://github.com/rishisinghray" target="_blank" rel="noopener" class="soc-btn">GitHub</a>
+        <a href="https://www.linkedin.com/in/rishisinghray" target="_blank" rel="noopener" class="soc-btn">LinkedIn</a>
+        <a href="mailto:rishisinghray@gmail.com" class="soc-btn">Email</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="portfolio.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <p class="footer-copy">© 2026 <span>RISHI SINGH RAY</span> — All rights reserved</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('hamBtn').onclick=()=>document.getElementById('mobMenu').classList.toggle('open');
+
+document.getElementById('contactForm').addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  const name=document.getElementById('cName').value.trim();
+  const email=document.getElementById('cEmail').value.trim();
+  const subject=document.getElementById('cSubject').value;
+  const msg=document.getElementById('cMsg').value.trim();
+  const formMsg=document.getElementById('formMsg');
+  const btn=document.getElementById('sendBtn');
+
+  if(!name||!email||!msg){
+    formMsg.textContent='// Please fill in all required fields.';
+    formMsg.className='form-msg msg-err'; formMsg.style.display='block'; return;
+  }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    formMsg.textContent='// Please enter a valid email address.';
+    formMsg.className='form-msg msg-err'; formMsg.style.display='block'; return;
+  }
+
+  btn.disabled=true; btn.textContent='// Transmitting...';
+
+  // EmailJS send
+  try{
+    const res = await fetch('https://api.emailjs.com/api/v1.0/email/send',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        service_id:'service_8250',
+        template_id:'template_8250rishi',
+        user_id:'d37HyAQ53w40TM5w0',
+        template_params:{
+          to_email:'rishisinghray@gmail.com',
+          from_name:name,
+          from_email:email,
+          subject:subject||'Portfolio Contact',
+          message:msg
+        }
+      })
+    });
+    if(res.ok){
+      formMsg.textContent='// Message transmitted successfully! I\'ll respond within 24 hours.';
+      formMsg.className='form-msg msg-ok'; formMsg.style.display='block';
+      document.getElementById('contactForm').reset();
+    } else {
+      throw new Error('Send failed');
+    }
+  }catch(err){
+    // Fallback - open email client
+    const mailtoLink=`mailto:rishisinghray@gmail.com?subject=${encodeURIComponent(subject||'Portfolio Contact')}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${msg}`)}`;
+    window.open(mailtoLink);
+    formMsg.textContent='// Opened your email client. Please send the pre-filled email.';
+    formMsg.className='form-msg msg-ok'; formMsg.style.display='block';
+  }
+
+  btn.disabled=false; btn.textContent='// TRANSMIT MESSAGE';
+});
+</script>
+</body>
+</html>
