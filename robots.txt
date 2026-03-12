@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Block login & admin pages
+Disallow: /index.html
+Disallow: /admin.html
+Disallow: /admin.js
+Disallow: /dashboard.html
+
+# Allow main pages
+Allow: /portfolio.html
+Allow: /about.html
+Allow: /contact.html
+Allow: /privacy.html
+Allow: /favicon.png
+
+Sitemap: https://rishisinghray.github.io/RISHI-PORTFOLIO/sitemap.xml
