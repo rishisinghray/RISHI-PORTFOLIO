@@ -1,14 +1,23 @@
-// ╔════════════════════════════════════════════════════╗
-// ║  auth.js  —  Email OTP + Google + Session Manager  ║
-// ╚════════════════════════════════════════════════════╝
+// auth.js — Fixed for custom domain (rishisingh.indevs.in)
+// Uses signInWithPopup ONLY — no redirect, no malformed URLs
 
-import { auth, db, googleProvider } from "./firebase-config.js";
+import { app, db } from "./firebase-config.js";
 import {
-  signInWithPopup, signOut, onAuthStateChanged,
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import {
   doc, setDoc, getDoc, serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// ── Auth & Provider init ───────────────────────────
+const auth           = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: "select_account" });
+
+export { auth };
 
 // ── Admin ──────────────────────────────────────────
 export const ADMIN_EMAIL = "rishisinghray@gmail.com";
@@ -18,45 +27,29 @@ export function checkAdmin(uid, email) {
   return email?.toLowerCase() === ADMIN_EMAIL.toLowerCase() || uid === ADMIN_UID;
 }
 
-// ── EmailJS config ─────────────────────────────────
+// ── EmailJS OTP ────────────────────────────────────
 const EJS_SERVICE  = "service_8250";
 const EJS_TEMPLATE = "template_8250rishi";
 const EJS_KEY      = "d37HyAQ53w40TM5w0";
+const _store       = {};
 
-// ── In-memory OTP store ────────────────────────────
-const _store = {};
-
-// ── OTP: Send ─────────────────────────────────────
 export async function sendOTP(email) {
   const code = String(Math.floor(100000 + Math.random() * 900000));
   _store[email] = { code, exp: Date.now() + 10 * 60 * 1000 };
-
-  // Use fetch API directly — works on all domains including GitHub Pages
-  const payload = {
-    service_id: EJS_SERVICE,
-    template_id: EJS_TEMPLATE,
-    user_id: EJS_KEY,
-    template_params: {
-      to_email: email,
-      otp_code: code,
-    },
-  };
-
   const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({
+      service_id: EJS_SERVICE,
+      template_id: EJS_TEMPLATE,
+      user_id: EJS_KEY,
+      template_params: { to_email: email, otp_code: code },
+    }),
   });
-
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error("Email send failed: " + err);
-  }
-
+  if (!res.ok) throw new Error("Email send failed: " + await res.text());
   return true;
 }
 
-// ── OTP: Verify ────────────────────────────────────
 export function verifyOTP(email, input) {
   const entry = _store[email];
   if (!entry) return { ok: false, msg: "No OTP found. Request a new one." };
@@ -69,7 +62,7 @@ export function verifyOTP(email, input) {
   return { ok: true };
 }
 
-// ── Firestore: Save user ───────────────────────────
+// ── Save user to Firestore ─────────────────────────
 export async function saveUser(uid, email, name = "", photo = "", method = "email") {
   const ref  = doc(db, "users", uid);
   const snap = await getDoc(ref);
@@ -89,15 +82,17 @@ export async function saveUser(uid, email, name = "", photo = "", method = "emai
   }
 }
 
-// ── Google login ───────────────────────────────────
+// ── Google Login — signInWithPopup ONLY ───────────
+// NEVER use signInWithRedirect on custom domains
+// Popup does NOT generate any redirectUrl
 export async function googleLogin() {
-  const res = await signInWithPopup(auth, googleProvider);
-  const u   = res.user;
+  const result = await signInWithPopup(auth, googleProvider);
+  const u = result.user;
   await saveUser(u.uid, u.email, u.displayName, u.photoURL, "google");
   return u;
 }
 
-// ── Session ────────────────────────────────────────
+// ── Session helpers ────────────────────────────────
 const SK = "rishi_sess";
 
 export function setSession(data) {
