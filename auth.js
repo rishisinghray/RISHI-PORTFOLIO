@@ -1,4 +1,4 @@
-// auth.js — Fixed for custom domain (rishisingh.indevs.in)
+// auth.js — Production ready for rishi-singh.netlify.app
 // Uses signInWithPopup ONLY — no redirect, no malformed URLs
 
 import { app, db } from "./firebase-config.js";

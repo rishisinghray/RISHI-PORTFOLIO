@@ -3,69 +3,138 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="google-site-verification" content="FN_rYkDHJwWptDs073ocnqPQl4s5OBSclNzBT82yPGg"/>
-<meta name="robots" content="noindex, nofollow"/>
-<link rel="canonical" href="https://rishisingh.indevs.in/portfolio.html"/>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6559058832938118" crossorigin="anonymous"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Rishi Singh Ray — Full-Stack Developer Portfolio</title>
-<link rel="stylesheet" href="style.css"/>
+<title>Rishi Singh Ray — Portfolio Login</title>
+<meta name="robots" content="noindex,nofollow"/>
 <link rel="icon" type="image/png" href="favicon.png"/>
 <link rel="apple-touch-icon" href="favicon.png"/>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6559058832938118" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Share+Tech+Mono&family=Exo+2:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-.login-card { max-width: 440px; }
-.step-bar { display:flex;align-items:center;gap:0;margin-bottom:28px; }
-.step { display:flex;align-items:center;gap:8px;font-family:var(--fmono);font-size:.56rem;letter-spacing:2px;text-transform:uppercase;color:var(--td);transition:color .3s; }
-.step.on { color:var(--cyan); }
-.step.done { color:var(--green); }
-.step-dot { width:22px;height:22px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:.6rem;flex-shrink:0;transition:all .3s; }
-.step.on .step-dot { background:rgba(0,229,255,.12);box-shadow:var(--cglow); }
-.step.done .step-dot { background:rgba(0,255,170,.12); }
-.step-line { flex:1;height:1px;background:var(--bdr);margin:0 8px; }
-.otp-row { display:flex;gap:10px;justify-content:center; }
-.otp-box { width:48px;height:58px;text-align:center;font-family:var(--fmono);font-size:1.5rem;font-weight:700;color:var(--cyan);background:rgba(0,229,255,.05);border:1px solid var(--bdr);outline:none;transition:border-color .2s,box-shadow .2s;border-radius:2px;caret-color:var(--cyan); }
-.otp-box:focus { border-color:var(--cyan);box-shadow:var(--cglow); }
-.otp-box.ok { border-color:rgba(0,229,255,.5);background:rgba(0,229,255,.07); }
-.resend-row { display:flex;align-items:center;justify-content:space-between;margin-top:10px; }
-.resend-btn { font-family:var(--fmono);font-size:.58rem;letter-spacing:2px;color:var(--cyan);background:none;border:none;text-transform:uppercase;padding:0;transition:text-shadow .2s; }
-.resend-btn:not(:disabled):hover { text-shadow:var(--cglow); }
-.resend-btn:disabled { color:var(--td); }
-.resend-cd { font-family:var(--fmono);font-size:.58rem;color:var(--td);letter-spacing:1px; }
-.back-link { font-family:var(--fmono);font-size:.56rem;letter-spacing:1px;color:var(--td);background:none;border:none;padding:0;margin-top:10px;display:block;transition:color .2s; }
-.back-link:hover { color:var(--cyan); }
-.method-divider { display:flex;align-items:center;gap:12px;margin:18px 0; }
-.mdl { flex:1;height:1px;background:var(--bdr); }
-.mdt { font-family:var(--fmono);font-size:.54rem;letter-spacing:2px;color:var(--td);white-space:nowrap; }
-.otp-hint { font-family:var(--fmono);font-size:.62rem;letter-spacing:1px;color:var(--td);margin-bottom:16px;line-height:1.7; }
-.otp-hint strong { color:var(--cyan); }
+:root{
+  --bg:#02040e;--cyan:#00e5ff;--pink:#ff2070;--green:#00ffaa;
+  --tb:#e8f4ff;--tm:#8899bb;--td:#445566;
+  --bdr:rgba(0,229,255,.15);
+  --fhead:'Orbitron',monospace;--fmono:'Share Tech Mono',monospace;--fbody:'Exo 2',sans-serif;
+  --cglow:0 0 12px rgba(0,229,255,.4);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;overflow-x:hidden;}
+body{background:var(--bg);color:var(--tm);font-family:var(--fbody);display:flex;align-items:center;justify-content:center;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,229,255,.012) 2px,rgba(0,229,255,.012) 4px);pointer-events:none;z-index:1;}
+canvas{position:fixed;inset:0;z-index:0;}
+
+/* CARD */
+.login-page{position:relative;z-index:10;width:100%;display:flex;align-items:center;justify-content:center;padding:20px;}
+.card{width:100%;max-width:420px;background:rgba(6,14,30,.92);border:1px solid var(--bdr);padding:32px 28px;position:relative;backdrop-filter:blur(12px);}
+.hc{position:absolute;width:14px;height:14px;}
+.hc.tl{top:8px;left:8px;border-top:1px solid var(--cyan);border-left:1px solid var(--cyan);}
+.hc.tr{top:8px;right:8px;border-top:1px solid var(--cyan);border-right:1px solid var(--cyan);}
+.hc.bl{bottom:8px;left:8px;border-bottom:1px solid var(--cyan);border-left:1px solid var(--cyan);}
+.hc.br{bottom:8px;right:8px;border-bottom:1px solid var(--cyan);border-right:1px solid var(--cyan);}
+
+/* LOGO */
+.logo{font-family:var(--fhead);font-size:1.6rem;font-weight:700;color:var(--cyan);letter-spacing:4px;margin-bottom:4px;}
+.sub{font-family:var(--fmono);font-size:.58rem;letter-spacing:3px;color:var(--td);margin-bottom:24px;}
+
+/* STEP BAR */
+.step-bar{display:flex;align-items:center;margin-bottom:24px;}
+.step{display:flex;align-items:center;gap:7px;font-family:var(--fmono);font-size:.55rem;letter-spacing:2px;color:var(--td);}
+.step.on{color:var(--cyan);}
+.step.done{color:var(--green);}
+.step-dot{width:20px;height:20px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:.55rem;flex-shrink:0;}
+.step.on .step-dot{background:rgba(0,229,255,.1);}
+.step.done .step-dot{background:rgba(0,255,170,.1);}
+.step-line{flex:1;height:1px;background:var(--bdr);margin:0 10px;}
+
+/* LABELS */
+.lbl{font-family:var(--fmono);font-size:.6rem;letter-spacing:3px;color:var(--td);margin-bottom:8px;display:block;}
+
+/* BUTTONS — large touch targets for mobile */
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px 20px;font-family:var(--fmono);font-size:.68rem;letter-spacing:2px;border:none;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;min-height:48px;}
+.btn-google{background:var(--pink);color:#fff;border:1px solid var(--pink);}
+.btn-google:hover,.btn-google:active{background:#d4005a;transform:translateY(-1px);}
+.btn-otp{background:transparent;color:var(--cyan);border:1px solid var(--cyan);margin-top:12px;}
+.btn-otp:hover,.btn-otp:active{background:rgba(0,229,255,.08);}
+.btn-verify{background:var(--cyan);color:var(--bg);font-weight:700;margin-top:14px;}
+.btn-verify:hover,.btn-verify:active{background:#00c8e0;}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+
+/* INPUT */
+.inp-wrap{margin-bottom:12px;}
+input.fi{width:100%;background:rgba(0,229,255,.04);border:1px solid var(--bdr);color:var(--tb);font-family:var(--fbody);font-size:.95rem;padding:12px 14px;outline:none;transition:border .2s;min-height:48px;}
+input.fi:focus{border-color:var(--cyan);}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:12px;margin:16px 0;}
+.divider-line{flex:1;height:1px;background:var(--bdr);}
+.divider-txt{font-family:var(--fmono);font-size:.52rem;letter-spacing:2px;color:var(--td);}
+
+/* MSG */
+.msg{font-family:var(--fmono);font-size:.62rem;padding:9px 12px;margin-top:8px;display:none;letter-spacing:1px;}
+.msg-e{border:1px solid var(--pink);color:var(--pink);background:rgba(255,32,112,.06);}
+.msg-s{border:1px solid var(--green);color:var(--green);background:rgba(0,255,170,.06);}
+
+/* STATUS BOX */
+.g-status{display:none;align-items:center;gap:9px;margin-top:8px;font-family:var(--fmono);font-size:.62rem;padding:10px 13px;background:rgba(0,229,255,.05);border:1px solid var(--bdr);letter-spacing:1px;}
+.g-status.show{display:flex;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:11px;height:11px;border:1.5px solid var(--cyan);border-top-color:transparent;border-radius:50%;animation:spin .6s linear infinite;flex-shrink:0;}
+
+/* OTP BOXES */
+.otp-hint{font-family:var(--fmono);font-size:.6rem;color:var(--td);margin-bottom:14px;line-height:1.8;letter-spacing:1px;}
+.otp-hint strong{color:var(--cyan);}
+.otp-row{display:flex;gap:8px;justify-content:center;margin-bottom:4px;}
+.otp-box{width:44px;height:54px;text-align:center;font-family:var(--fmono);font-size:1.4rem;font-weight:700;color:var(--cyan);background:rgba(0,229,255,.05);border:1px solid var(--bdr);outline:none;transition:border-color .2s;-webkit-tap-highlight-color:transparent;}
+.otp-box:focus{border-color:var(--cyan);box-shadow:var(--cglow);}
+.otp-box.ok{border-color:rgba(0,229,255,.5);background:rgba(0,229,255,.07);}
+.resend-row{display:flex;align-items:center;justify-content:space-between;margin-top:10px;}
+.resend-btn{font-family:var(--fmono);font-size:.58rem;letter-spacing:2px;color:var(--cyan);background:none;border:none;cursor:pointer;padding:8px 0;min-height:44px;-webkit-tap-highlight-color:transparent;}
+.resend-btn:disabled{color:var(--td);cursor:not-allowed;}
+.resend-cd{font-family:var(--fmono);font-size:.58rem;color:var(--td);}
+.back-btn{font-family:var(--fmono);font-size:.56rem;color:var(--td);background:none;border:none;cursor:pointer;padding:10px 0;display:block;width:100%;text-align:left;margin-top:8px;min-height:44px;-webkit-tap-highlight-color:transparent;}
+.back-btn:hover,.back-btn:active{color:var(--cyan);}
+
+/* TOAST */
+.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-80px);font-family:var(--fmono);font-size:.65rem;letter-spacing:2px;padding:10px 20px;border-radius:2px;z-index:999;transition:transform .35s;white-space:nowrap;}
+.toast.on{transform:translateX(-50%) translateY(0);}
+.toast-ok{background:rgba(0,255,170,.12);border:1px solid var(--green);color:var(--green);}
+.toast-info{background:rgba(0,229,255,.1);border:1px solid var(--cyan);color:var(--cyan);}
+.toast-err{background:rgba(255,32,112,.1);border:1px solid var(--pink);color:var(--pink);}
+
+.foot{font-family:var(--fmono);font-size:.48rem;color:var(--td);letter-spacing:1px;text-align:center;margin-top:18px;}
+
+@media(max-width:480px){
+  .card{padding:24px 18px;}
+  .otp-box{width:38px;height:48px;font-size:1.2rem;}
+  .otp-row{gap:6px;}
+}
 </style>
 </head>
 <body>
-<div id="cur-dot"></div>
-<div id="cur-ring"></div>
-<canvas id="bg-canvas"></canvas>
-<div class="scanlines"></div>
-<div class="toast toast-info" id="toast"></div>
+<canvas id="bg"></canvas>
+<div class="toast" id="toast"></div>
 
 <div class="login-page">
-  <div class="login-card glass" style="position:relative">
+  <div class="card">
     <div class="hc tl"></div><div class="hc tr"></div>
     <div class="hc bl"></div><div class="hc br"></div>
 
-    <div class="login-logo">RISHI</div>
-    <div class="login-sub">// Portfolio OS — Authentication Required</div>
+    <div class="logo">RISHI</div>
+    <div class="sub">// Portfolio OS — Authentication Required</div>
 
     <!-- STEP 1 -->
-    <div id="step1">
+    <div id="s1">
       <div class="step-bar">
         <div class="step on"><div class="step-dot">1</div><span>Verify</span></div>
         <div class="step-line"></div>
         <div class="step"><div class="step-dot">2</div><span>Access</span></div>
       </div>
 
-      <!-- Google -->
-      <p class="auth-lbl" style="margin-bottom:11px">Google Verification</p>
-      <button class="btn btn-pink btn-full" id="googleBtn">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0">
+      <span class="lbl">Google Verification</span>
+      <button class="btn btn-google" id="googleBtn" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
           <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
           <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
           <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
@@ -73,182 +142,262 @@
         </svg>
         <span>Continue with Google</span>
       </button>
-      <!-- Google status — HIDDEN by default, only shows after click -->
-      <div id="gStatus" style="display:none;margin-top:8px;font-family:var(--fmono);font-size:.62rem;letter-spacing:1px;padding:10px 13px;background:rgba(0,229,255,.05);border:1px solid var(--bdr);border-radius:2px;display:none;align-items:center;gap:9px">
-        <span id="gSpinner" style="width:11px;height:11px;border:1.5px solid var(--cyan);border-top-color:transparent;border-radius:50%;animation:spin .6s linear infinite;display:inline-block;flex-shrink:0"></span>
-        <span id="gStatusTxt" style="color:var(--tm)">Connecting to Google...</span>
+
+      <div class="g-status" id="gStatus">
+        <span class="spinner" id="gSpinner"></span>
+        <span id="gTxt">Connecting to Google...</span>
       </div>
       <div class="msg" id="gMsg"></div>
 
-      <div class="method-divider">
-        <div class="mdl"></div><span class="mdt">or verify via email OTP</span><div class="mdl"></div>
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-txt">or verify via email OTP</span>
+        <div class="divider-line"></div>
       </div>
 
-      <!-- Email OTP -->
-      <p class="auth-lbl" style="margin-bottom:11px">Email OTP Verification</p>
-      <div class="fg" style="margin-bottom:12px">
-        <label class="fl">Your Email Address</label>
-        <input type="email" class="fi" id="emailInp" placeholder="you@example.com" autocomplete="email"/>
+      <span class="lbl">Email OTP Verification</span>
+      <div class="inp-wrap">
+        <input type="email" class="fi" id="emailInp" placeholder="you@example.com" autocomplete="email" inputmode="email"/>
       </div>
       <div class="msg" id="emailMsg"></div>
-      <button class="btn btn-cyan btn-full" id="sendOtpBtn" style="margin-top:10px"><span>Send OTP Code →</span></button>
+      <button class="btn btn-otp" id="sendOtpBtn" type="button"><span>Send OTP Code →</span></button>
     </div>
 
     <!-- STEP 2 -->
-    <div id="step2" style="display:none">
+    <div id="s2" style="display:none">
       <div class="step-bar">
         <div class="step done"><div class="step-dot">✓</div><span>Verified</span></div>
         <div class="step-line"></div>
         <div class="step on"><div class="step-dot">2</div><span>Access</span></div>
       </div>
-      <p class="otp-hint">Code sent to <strong id="otpEmailLbl"></strong><br>Enter the 6-digit code. Valid for 10 minutes.</p>
+      <p class="otp-hint">Code sent to <strong id="otpLbl"></strong><br>Enter the 6-digit code below. Valid 10 min.</p>
       <div class="otp-row" id="otpRow">
-        <input class="otp-box" maxlength="1" type="text" inputmode="numeric"/>
-        <input class="otp-box" maxlength="1" type="text" inputmode="numeric"/>
-        <input class="otp-box" maxlength="1" type="text" inputmode="numeric"/>
-        <input class="otp-box" maxlength="1" type="text" inputmode="numeric"/>
-        <input class="otp-box" maxlength="1" type="text" inputmode="numeric"/>
-        <input class="otp-box" maxlength="1" type="text" inputmode="numeric"/>
+        <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]"/>
+        <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]"/>
+        <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]"/>
+        <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]"/>
+        <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]"/>
+        <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]"/>
       </div>
-      <div class="msg" id="otpMsg" style="margin-top:10px"></div>
-      <button class="btn btn-cyan btn-full" id="verifyBtn" style="margin-top:14px"><span>Verify &amp; Enter →</span></button>
+      <div class="msg" id="otpMsg"></div>
+      <button class="btn btn-verify" id="verifyBtn" type="button"><span>Verify &amp; Enter →</span></button>
       <div class="resend-row">
-        <button class="resend-btn" id="resendBtn" disabled>Resend Code</button>
+        <button class="resend-btn" id="resendBtn" type="button" disabled>Resend Code</button>
         <span class="resend-cd" id="resendCd"></span>
       </div>
-      <button class="back-link" id="backBtn">← Change email or method</button>
+      <button class="back-btn" id="backBtn" type="button">← Change email or method</button>
     </div>
 
-    <p style="font-family:var(--fmono);font-size:.5rem;color:var(--td);letter-spacing:1px;text-align:center;margin-top:18px">Secure · OTP verified · Firebase powered</p>
+    <p class="foot">Secure · OTP verified · Firebase powered</p>
   </div>
 </div>
 
+<!-- Matrix BG -->
 <script>
-const dot=document.getElementById('cur-dot'),ring=document.getElementById('cur-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
-(function loop(){dot.style.left=mx+'px';dot.style.top=my+'px';rx+=(mx-rx-15)*.1;ry+=(my-ry-15)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
-document.querySelectorAll('button,a,input').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('big'));el.addEventListener('mouseleave',()=>ring.classList.remove('big'))});
-const cv=document.getElementById('bg-canvas'),ctx=cv.getContext('2d');
+const cv=document.getElementById('bg'),ctx=cv.getContext('2d');
 const chars='01アイウエオカキクケコ{}[]<>/\\|';let drops=[];
 function rsz(){cv.width=innerWidth;cv.height=innerHeight;drops=Array(Math.floor(cv.width/15)).fill(1)}
-function drw(){ctx.fillStyle='rgba(2,4,14,0.07)';ctx.fillRect(0,0,cv.width,cv.height);ctx.font='12px monospace';drops.forEach((y,i)=>{ctx.fillStyle=`rgba(0,229,255,${y*15<cv.height*.28?.7:.28})`;ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*15,y*15);if(y*15>cv.height&&Math.random()>.975)drops[i]=0;drops[i]++})}
-rsz();setInterval(drw,50);window.addEventListener('resize',rsz);
+function drw(){ctx.fillStyle='rgba(2,4,14,0.07)';ctx.fillRect(0,0,cv.width,cv.height);ctx.font='12px monospace';drops.forEach((y,i)=>{ctx.fillStyle='rgba(0,229,255,.22)';ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*15,y*15);if(y*15>cv.height&&Math.random()>.975)drops[i]=0;drops[i]++})}
+rsz();setInterval(drw,55);window.addEventListener('resize',rsz);
 </script>
 
 <script type="module">
-import { auth } from './firebase-config.js';
-import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-import { sendOTP, verifyOTP, googleLogin, saveUser, setSession, getSession, checkAdmin } from './auth.js';
+import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-const $=id=>document.getElementById(id);
-function toast(msg,type='info'){const t=$('toast');t.textContent=msg;t.className=`toast toast-${type} on`;setTimeout(()=>t.classList.remove('on'),3600)}
-function showMsg(id,txt,type){const el=$(id);el.textContent=txt;el.className=`msg msg-${type}`;el.style.display='block'}
-function hideMsg(id){$(id).style.display='none'}
-function setLoad(id,on,txt){const b=$(id);b.disabled=on;b.querySelector('span').innerHTML=on?`<span class="bspin"></span> ${txt}`:txt}
+// Firebase config
+const cfg = {
+  apiKey:            "AIzaSyDULGyjqXeAHm2i6ba3dBzDqJtXojQ-Oro",
+  authDomain:        "rishi-0.firebaseapp.com",
+  projectId:         "rishi-0",
+  storageBucket:     "rishi-0.firebasestorage.app",
+  messagingSenderId: "876178991741",
+  appId:             "1:876178991741:web:42a0afa29ea9cb5b241f14"
+};
+const app  = getApps().length ? getApps()[0] : initializeApp(cfg);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+const gp   = new GoogleAuthProvider();
+gp.setCustomParameters({ prompt: "select_account" });
 
-// Redirect if already logged in
-const sess=getSession();
-const fbUser=await new Promise(r=>{const u=onAuthStateChanged(auth,f=>{u();r(f)})});
-if(fbUser||sess){
-  location.href=checkAdmin(fbUser?.uid||sess?.uid||'',fbUser?.email||sess?.email||'')?'admin.html':'portfolio.html';
+const ADMIN_EMAIL = "rishisinghray@gmail.com";
+const ADMIN_UID   = "kpFakxL3WjfaQE2KeCepDaO8rHO2";
+const SK = "rishi_sess";
+
+function isAdmin(uid, email){ return email?.toLowerCase()===ADMIN_EMAIL||uid===ADMIN_UID; }
+function getSess(){ try{const r=localStorage.getItem(SK);if(!r)return null;const d=JSON.parse(r);if(Date.now()-d._ts>7*86400000){localStorage.removeItem(SK);return null;}return d;}catch{return null;} }
+function setSess(d){ localStorage.setItem(SK,JSON.stringify({...d,_ts:Date.now()})); }
+
+function $(id){ return document.getElementById(id); }
+function toast(msg,type='info'){ const t=$('toast');t.textContent=msg;t.className=`toast toast-${type} on`;setTimeout(()=>t.classList.remove('on'),3500); }
+function showMsg(id,txt,type){ const el=$(id);el.textContent=txt;el.className=`msg msg-${type}`;el.style.display='block'; }
+function hideMsg(id){ $(id).style.display='none'; }
+function setBtnLoad(id,loading,txt){
+  const b=$(id); b.disabled=loading;
+  b.querySelector('span').innerHTML = loading ? '<span style="display:inline-block;width:10px;height:10px;border:1.5px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px"></span>'+txt : txt;
 }
 
-function doRedirect(u){
-  const adm=checkAdmin(u.uid,u.email);
-  setSession({uid:u.uid,email:u.email,name:u.displayName||u.email.split('@')[0],photo:u.photoURL||'',isAdmin:adm,method:u._method||'otp'});
-  toast('// ACCESS GRANTED','ok');
-  // Use relative paths ONLY — no absolute URLs, no domain concatenation
-  // This prevents malformed redirectUrl on custom domains
-  setTimeout(()=>{ location.href = adm ? 'admin.html' : 'portfolio.html'; }, 800);
-}
-
-// Google — show status ONLY after click
-$('googleBtn').addEventListener('click',async()=>{
-  const gStatus=$('gStatus');
-  gStatus.style.display='flex';
-  $('gStatusTxt').textContent='Connecting to Google...';
-  hideMsg('gMsg');
-  try{
-    const u=await googleLogin();
-    $('gSpinner').style.display='none';
-    $('gStatusTxt').innerHTML=`<span style="color:var(--green)">✓ Verified: ${u.email}</span>`;
-    u._method='google';
-    setTimeout(()=>doRedirect(u),600);
-  }catch(e){
-    gStatus.style.display='none';
-    if(e.code!=='auth/popup-closed-by-user')
-      showMsg('gMsg','Google error: '+e.message,'e');
+// If already logged in → redirect
+const sess = getSess();
+onAuthStateChanged(auth, fbUser => {
+  if(fbUser || sess){
+    const uid   = fbUser?.uid   || sess?.uid   || '';
+    const email = fbUser?.email || sess?.email || '';
+    location.href = isAdmin(uid,email) ? 'admin.html' : 'portfolio.html';
   }
 });
 
-// OTP countdown
-let cdTimer;
-function startCD(s){
-  const btn=$('resendBtn'),cd=$('resendCd');
-  btn.disabled=true;let t=s;cd.textContent=`Resend in ${t}s`;
-  clearInterval(cdTimer);
-  cdTimer=setInterval(()=>{t--;cd.textContent=`Resend in ${t}s`;if(t<=0){clearInterval(cdTimer);btn.disabled=false;cd.textContent=''}},1000);
+async function saveUser(uid, email, name, photo, method){
+  const ref  = doc(db,"users",uid);
+  const snap = await getDoc(ref);
+  if(!snap.exists()){
+    await setDoc(ref,{ uid, email, displayName:name||email.split('@')[0], photoURL:photo, loginMethod:method, isAdmin:isAdmin(uid,email), createdAt:serverTimestamp(), lastLogin:serverTimestamp() });
+  } else {
+    await setDoc(ref,{ lastLogin:serverTimestamp() },{ merge:true });
+  }
 }
 
-// OTP boxes
-const boxes=$('otpRow').querySelectorAll('.otp-box');
-boxes.forEach((b,i)=>{
-  b.addEventListener('input',()=>{b.value=b.value.replace(/\D/g,'');if(b.value){b.classList.add('ok');if(i<5)boxes[i+1].focus()}else b.classList.remove('ok')});
-  b.addEventListener('keydown',e=>{if(e.key==='Backspace'&&!b.value&&i>0){boxes[i-1].focus();boxes[i-1].classList.remove('ok')}});
-  b.addEventListener('paste',e=>{e.preventDefault();const p=e.clipboardData.getData('text').replace(/\D/g,'').slice(0,6);p.split('').forEach((ch,j)=>{if(boxes[j]){boxes[j].value=ch;boxes[j].classList.add('ok')}});if(boxes[Math.min(p.length,5)])boxes[Math.min(p.length,5)].focus()});
+function doRedirect(uid, email, name, photo, method){
+  setSess({ uid, email, name:name||email.split('@')[0], photo:photo||'', isAdmin:isAdmin(uid,email), method });
+  toast('// ACCESS GRANTED','ok');
+  setTimeout(()=>{ location.href = isAdmin(uid,email) ? 'admin.html' : 'portfolio.html'; }, 700);
+}
+
+// ── GOOGLE LOGIN ──────────────────────────────────
+$('googleBtn').addEventListener('click', async () => {
+  $('gStatus').classList.add('show');
+  $('gSpinner').style.display = 'inline-block';
+  $('gTxt').textContent = 'Connecting to Google...';
+  hideMsg('gMsg');
+  $('googleBtn').disabled = true;
+
+  try {
+    const result = await signInWithPopup(auth, gp);
+    const u = result.user;
+    $('gSpinner').style.display = 'none';
+    $('gTxt').innerHTML = `<span style="color:var(--green)">✓ ${u.email}</span>`;
+    await saveUser(u.uid, u.email, u.displayName, u.photoURL, 'google');
+    doRedirect(u.uid, u.email, u.displayName, u.photoURL, 'google');
+  } catch(e) {
+    $('gStatus').classList.remove('show');
+    $('googleBtn').disabled = false;
+    if(e.code !== 'auth/popup-closed-by-user'){
+      showMsg('gMsg', '// Error: ' + (e.message||e.code), 'e');
+    }
+  }
 });
-const getOTP=()=>[...boxes].map(b=>b.value).join('');
-const clearOTP=()=>boxes.forEach(b=>{b.value='';b.classList.remove('ok')});
 
-let curEmail='';
+// ── OTP SEND ─────────────────────────────────────
+const EJS = { svc:'service_8250', tpl:'template_8250rishi', key:'d37HyAQ53w40TM5w0' };
+const _otp = {};
 
-// Send OTP
-$('sendOtpBtn').addEventListener('click',async()=>{
-  const email=$('emailInp').value.trim();
-  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showMsg('emailMsg','Enter a valid email address.','e');return}
-  hideMsg('emailMsg');setLoad('sendOtpBtn',true,'Sending OTP...');
-  try{
+async function sendOTP(email){
+  const code = String(Math.floor(100000+Math.random()*900000));
+  _otp[email] = { code, exp: Date.now()+10*60*1000 };
+  const res = await fetch('https://api.emailjs.com/api/v1.0/email/send',{
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({ service_id:EJS.svc, template_id:EJS.tpl, user_id:EJS.key,
+      template_params:{ to_email:email, otp_code:code } })
+  });
+  if(!res.ok) throw new Error(await res.text());
+}
+
+let curEmail = '';
+let cdTimer;
+
+function startCD(s){
+  const btn=$('resendBtn'),cd=$('resendCd');
+  btn.disabled=true; let t=s;
+  cd.textContent=`Resend in ${t}s`;
+  clearInterval(cdTimer);
+  cdTimer=setInterval(()=>{ t--;cd.textContent=`Resend in ${t}s`;if(t<=0){clearInterval(cdTimer);btn.disabled=false;cd.textContent='';} },1000);
+}
+
+$('sendOtpBtn').addEventListener('click', async () => {
+  const email = $('emailInp').value.trim();
+  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    showMsg('emailMsg','Enter a valid email address.','e'); return;
+  }
+  hideMsg('emailMsg');
+  setBtnLoad('sendOtpBtn', true, 'Sending...');
+  try {
     await sendOTP(email);
-    curEmail=email;
-    $('otpEmailLbl').textContent=email;
-    $('step1').style.display='none';
-    $('step2').style.display='block';
-    clearOTP();startCD(60);
-    setTimeout(()=>boxes[0].focus(),100);
-    showMsg('otpMsg','✓ Code sent! Check inbox & spam.','s');
-  }catch(e){
-    showMsg('emailMsg','Failed: '+e.message,'e');
-  }finally{setLoad('sendOtpBtn',false,'Send OTP Code →')}
+    curEmail = email;
+    $('otpLbl').textContent = email;
+    $('s1').style.display = 'none';
+    $('s2').style.display = 'block';
+    clearOTP(); startCD(60);
+    showMsg('otpMsg','✓ Code sent! Check inbox & spam folder.','s');
+    setTimeout(()=>boxes[0].focus(), 150);
+  } catch(e){
+    showMsg('emailMsg','Failed to send: '+e.message,'e');
+  } finally {
+    setBtnLoad('sendOtpBtn', false, 'Send OTP Code →');
+  }
 });
 
-// Resend
-$('resendBtn').addEventListener('click',async()=>{
-  try{await sendOTP(curEmail);clearOTP();startCD(60);boxes[0].focus();showMsg('otpMsg','✓ New code sent!','s')}
-  catch(e){showMsg('otpMsg','Resend failed: '+e.message,'e')}
+// ── OTP BOXES ─────────────────────────────────────
+const boxes = document.querySelectorAll('.otp-box');
+boxes.forEach((b,i)=>{
+  b.addEventListener('input',()=>{
+    b.value=b.value.replace(/\D/g,'');
+    if(b.value){ b.classList.add('ok'); if(i<5) boxes[i+1].focus(); }
+    else b.classList.remove('ok');
+  });
+  b.addEventListener('keydown',e=>{
+    if(e.key==='Backspace'&&!b.value&&i>0){ boxes[i-1].focus(); boxes[i-1].classList.remove('ok'); }
+  });
+  b.addEventListener('paste',e=>{
+    e.preventDefault();
+    const p=e.clipboardData.getData('text').replace(/\D/g,'').slice(0,6);
+    p.split('').forEach((ch,j)=>{ if(boxes[j]){boxes[j].value=ch;boxes[j].classList.add('ok');} });
+    const last=Math.min(p.length,5);
+    if(boxes[last]) boxes[last].focus();
+  });
+});
+const getOTP = ()=>[...boxes].map(b=>b.value).join('');
+function clearOTP(){ boxes.forEach(b=>{b.value='';b.classList.remove('ok');}); }
+
+// ── VERIFY OTP ────────────────────────────────────
+$('verifyBtn').addEventListener('click', async () => {
+  const code = getOTP();
+  if(code.length!==6){ showMsg('otpMsg','Enter all 6 digits.','e'); return; }
+  hideMsg('otpMsg');
+  setBtnLoad('verifyBtn', true, 'Verifying...');
+  try {
+    const entry = _otp[curEmail];
+    if(!entry){ showMsg('otpMsg','No OTP found. Request a new one.','e'); return; }
+    if(Date.now()>entry.exp){ delete _otp[curEmail]; showMsg('otpMsg','OTP expired. Resend.','e'); return; }
+    if(code !== entry.code){ showMsg('otpMsg','Incorrect code. Try again.','e'); return; }
+    delete _otp[curEmail];
+    const uid = 'otp_'+btoa(curEmail).replace(/[^a-zA-Z0-9]/g,'').slice(0,24);
+    await saveUser(uid, curEmail, '', '', 'otp');
+    doRedirect(uid, curEmail, curEmail.split('@')[0], '', 'otp');
+  } catch(e){
+    showMsg('otpMsg','Error: '+e.message,'e');
+  } finally {
+    setBtnLoad('verifyBtn', false, 'Verify &amp; Enter →');
+  }
 });
 
-// Back
-$('backBtn').addEventListener('click',()=>{
-  $('step2').style.display='none';
-  $('step1').style.display='block';
-  $('gStatus').style.display='none';
-  hideMsg('emailMsg');hideMsg('otpMsg');clearOTP();
+// ── RESEND ────────────────────────────────────────
+$('resendBtn').addEventListener('click', async () => {
+  try {
+    await sendOTP(curEmail);
+    clearOTP(); startCD(60);
+    showMsg('otpMsg','✓ New code sent!','s');
+    setTimeout(()=>boxes[0].focus(),150);
+  } catch(e){ showMsg('otpMsg','Resend failed: '+e.message,'e'); }
 });
 
-// Verify OTP
-$('verifyBtn').addEventListener('click',async()=>{
-  const code=getOTP();
-  if(code.length!==6){showMsg('otpMsg','Enter all 6 digits.','e');return}
-  hideMsg('otpMsg');setLoad('verifyBtn',true,'Verifying...');
-  try{
-    const res=verifyOTP(curEmail,code);
-    if(!res.ok){showMsg('otpMsg',res.msg,'e');return}
-    const uid='otp_'+btoa(unescape(encodeURIComponent(curEmail))).replace(/[^a-zA-Z0-9]/g,'').slice(0,24);
-    await saveUser(uid,curEmail,'','','otp');
-    doRedirect({uid,email:curEmail,displayName:curEmail.split('@')[0],photoURL:'',_method:'otp'});
-  }catch(e){showMsg('otpMsg','Error: '+e.message,'e')}
-  finally{setLoad('verifyBtn',false,'Verify & Enter →')}
+// ── BACK ──────────────────────────────────────────
+$('backBtn').addEventListener('click', () => {
+  $('s2').style.display='none';
+  $('s1').style.display='block';
+  $('gStatus').classList.remove('show');
+  $('googleBtn').disabled=false;
+  hideMsg('emailMsg'); hideMsg('otpMsg'); clearOTP();
 });
 </script>
 </body>
