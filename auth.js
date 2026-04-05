@@ -1,4 +1,4 @@
-// auth.js — Production ready for rishi-singh.netlify.app
+// auth.js — Production ready for rishisingh.indevs.in
 // Uses signInWithPopup ONLY — no redirect, no malformed URLs
 
 import { app, db } from "./firebase-config.js";

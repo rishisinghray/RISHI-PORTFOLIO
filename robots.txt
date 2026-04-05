@@ -7,4 +7,4 @@ Allow: /portfolio.html
 Allow: /about.html
 Allow: /contact.html
 Allow: /privacy.html
-Sitemap: https://rishi-singh.netlify.app/sitemap.xml
+Sitemap: https://rishisingh.indevs.in/sitemap.xml
