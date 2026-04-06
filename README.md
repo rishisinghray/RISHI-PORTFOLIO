@@ -1,2 +1,9 @@
-# RISHI-PORTFOLIO
-RISHI.OS — Futuristic developer portfolio with Email OTP authentication, Google login, admin dashboard, and cyberpunk UI built using HTML, CSS, JavaScript, Firebase, and EmailJS.
+# RISHI PORTFOLIO 🚀
+
+🌐 Live Website: https://rishisingh.indevs.in/
+
+Full Stack Developer portfolio built with HTML, CSS, JavaScript, and Firebase.
+
+## 🔗 Links
+- Portfolio: https://rishisingh.indevs.in/
+- Contact: https://rishisingh.indevs.in/contact.html
