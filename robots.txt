@@ -1,10 +1,4 @@
 User-agent: *
-Allow: /portfolio.html
-Allow: /about.html
-Allow: /contact.html
-Allow: /privacy.html
-Disallow: /index.html
-Disallow: /admin.html
-Disallow: /dashboard.html
+Allow: /
 
 Sitemap: https://rishisingh.indevs.in/sitemap.xml
